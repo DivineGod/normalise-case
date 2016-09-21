@@ -1,0 +1,19 @@
+{
+  "name": "normalise-case",
+  "version": "1.0.0",
+  "description": "normalise case for strings and object keys",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node ./tests",
+    "cover": "istanbul cover tests"
+  },
+  "author": "Anders Rasmussen <divinegod@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "tape": "^4.6.0"
+  }
+}
