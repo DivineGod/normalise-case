@@ -2,6 +2,18 @@ var upperCase = /^[A-Z]*$/;
 function allUpperCase(str) {
     return upperCase.test(str);
 }
+
+function normaliseString(str) {
+    // normalise case
+    if (allUpperCase(str)) {
+        return str.toLowerCase();
+    }
+    var newString = str[0].toLowerCase() + str.substring(1);
+    newString = newString.replace('ID', 'Id');
+    newString = newString.replace(/[A-Z]([A-Z]+)[A-Z][a-z]$/, (m, g) => m.replace(g, g.toLowerCase()));
+    return newString;
+}
+
 function normaliseCase(obj, inArray = false, checkCyclic = true, shouldRecurse = true) {
     if (checkCyclic && shouldRecurse) {
         try {
@@ -14,14 +26,7 @@ function normaliseCase(obj, inArray = false, checkCyclic = true, shouldRecurse =
     if (!obj) return obj;
 
     if (!inArray && (typeof obj === 'string' && obj.length > 0)) {
-        // normalise case
-        if (allUpperCase(obj)) {
-            return obj.toLowerCase();
-        }
-        var newString = obj[0].toLowerCase() + obj.substring(1);
-        newString = newString.replace('ID', 'Id');
-        newString = newString.replace(/[A-Z]([A-Z]+)[A-Z][a-z]$/, (m, g) => m.replace(g, g.toLowerCase()));
-        return newString;
+        return normaliseString(obj);
     }
 
     if (obj && typeof obj === 'object') {
