@@ -1,6 +1,6 @@
 {
   "name": "normalise-case",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "normalise case for strings and object keys",
   "main": "index.js",
   "directories": {
