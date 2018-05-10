@@ -31,17 +31,16 @@ function normaliseCase(obj, inArray = false, checkCyclic = true, shouldRecurse =
 
     if (obj && typeof obj === 'object') {
         if (Array.isArray(obj)) {
-            return obj.map(function (o) { return normaliseCase(o, true, checkCyclic, shouldRecurse); });
+            return obj.map(function(o) {
+                return normaliseCase(o, true, checkCyclic, shouldRecurse);
+            });
         }
-        return Object.keys(obj).reduce(
-            function (n, k) {
-                var normalisedKey = normaliseCase(k, false, checkCyclic);
-                var normalisedValue = shouldRecurse ? normaliseCase(obj[k], true, checkCyclic) : obj[k];
-                n[normalisedKey] = normalisedValue;
-                return n;
-            },
-            {}
-        );
+        return Object.keys(obj).reduce(function(n, k) {
+            var normalisedKey = normaliseCase(k, false, checkCyclic);
+            var normalisedValue = shouldRecurse ? normaliseCase(obj[k], true, checkCyclic) : obj[k];
+            n[normalisedKey] = normalisedValue;
+            return n;
+        }, {});
     }
 
     return obj;
